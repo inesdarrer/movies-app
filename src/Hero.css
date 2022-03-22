@@ -1,0 +1,54 @@
+.hero{
+    margin-top: 100px;
+    width:100%;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.hero-text{
+    width: 100%;
+}
+
+.hero-image{
+    width: 50%;
+}
+
+
+.hero-slider {
+    height:25px;
+}
+
+.hero-heading{
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    font-size: 60px;
+    line-height: 66px;
+    margin-top: 0;
+    max-width: 18ch;
+}
+
+ .hero-text p{
+   color: #999c9f;
+    font-size: 20px;
+    letter-spacing: .3px;
+    line-height: 26px;
+}
+
+.cta-button{ 
+    font-weight: 700;
+    background-color: #fbc500;
+    color: #000;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+}
+
+@media query {
+    
+}

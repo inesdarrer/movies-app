@@ -1,0 +1,26 @@
+.row-posters{
+    max-height: 250px;
+    display: flex;
+    flex-direction: row;
+    overflow-y:hidden;
+    overflow-x: visible;
+}
+.row-posters::-webkit-scrollbar{
+    color: black;
+}
+
+
+.row-poster{
+    max-height: 250px;
+    display: flex;
+    flex-direction: row;
+    overflow-y:hidden;
+    overflow-x: visible;
+    margin-right: 20px;
+}
+
+
+.row-poster:hover{
+    transform: scale(1.08);
+    opacity: 1;
+    }

@@ -1,0 +1,14 @@
+.discover{
+    margin-top: 150px;
+}
+
+.discover-movies{
+    margin-top: 150px;
+}
+
+.filter{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 20px;
+}
