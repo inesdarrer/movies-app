@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import logo from './header/JustWatch-logo-large.webp'
 import searchIcon from './header/search.png'
 import './Header.css'
-import axios from 'axios';
+import axios from './axios';
 import { NavLink } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import SingleMovie from './SingleMovie';
+import FavouriteMovie from './FavouriteMovie';
+import AddFavourites from './AddFavourites';
+import Row from './Row';
 
-const Header = () => {
+
+const Header = ({ movie, fetchUrl }) => {
     const [searchText, setSearchText] = useState("");
     const [movies, setMovies] = useState([]);
-
+    const [favourite, setFavourite] = useState([]);
     const base_url = "https://image.tmdb.org/t/p/original";
 
     const fetchSearch = async () => {
@@ -26,9 +30,25 @@ const Header = () => {
         }
     };
 
+
+    useEffect(() => {
+        async function fetchData() {
+            const request = await axios.get(fetchUrl);
+            setMovies(request.data.results);
+            return request;
+        }
+
+        fetchData();
+    }, [fetchUrl]);
+
     useEffect(() => {
         fetchSearch();
     }, []);
+
+    const addToFavourite = (movie) => {
+        console.log(favourite);
+        setFavourite([...favourite, movie])
+    }
 
     return (
         <div className='header'>
@@ -45,8 +65,13 @@ const Header = () => {
                     </Button>
 
                 </div>
-                <div className="favouritesButton">
-                    FAV
+                <div className="favourites">
+                    <div className="favourites-dropdown">
+                        <SingleMovie movies={movies}
+                            favoriteComponent={AddFavourites}
+                            handleFavouritesClick={addToFavourite} />
+                        <FavouriteMovie />
+                    </div>
                 </div>
             </div>
             <div className="trending">

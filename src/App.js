@@ -20,6 +20,7 @@ import SearchGenres from './SearchGenres';
 import SingleMovie from './SingleMovie';
 import MovieDetails from './MovieDetails';
 
+
 const App = () => {
 
   const url =
@@ -28,6 +29,7 @@ const App = () => {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
+  const [favourite, setFavourite] = useState([]);
 
   useEffect(() => {
     fetchMovies();
@@ -40,10 +42,15 @@ const App = () => {
     setData(movies.results);
     setFiltered(movies.results);
   };
+
+  const addToFavourite = (movie) => {
+    console.log(favourite);
+    setFavourite([...favourite, movie])
+  }
   return (
     <div className='App'>
       <BrowserRouter>
-        <Header />
+        <Header favourite={setFavourite} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/discover' element={<Discover />} />
