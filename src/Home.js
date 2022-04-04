@@ -19,15 +19,6 @@ const Home = () => {
             <Hero />
             <InfoSection />
             <Row />
-            <div className='row'>
-                <h2>Favourites</h2>
-                <div className="row-posters">
-                    {favourites && favourites.map(movie => (
-                        <FavouriteMovieList key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
-                        />
-                    ))}
-                </div>
-            </div>
         </div>
 
     )

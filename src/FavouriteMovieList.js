@@ -21,15 +21,15 @@ function FavouriteMovieList({ fetchUrl }) {
 
 
     useEffect(() => {
-        const favourite = JSON.parse(localStorage.getItem('favourite'));
-        if (favourite) {
-            setFavourite(favourite);
+        const favourites = JSON.parse(localStorage.getItem('favourite'));
+        if (favourites) {
+            setFavourite(favourites);
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('favourite', JSON.stringify(favourite));
-    }, [favourite]);
+        localStorage.setItem('favourite', JSON.stringify(favourites));
+    }, [favourites]);
 
     /**const addToFavourite = (movie) => {
         console.log(favourites);

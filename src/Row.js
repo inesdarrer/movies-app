@@ -2,13 +2,12 @@ import { SettingsRemoteSharp } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import AddFavourites from './AddFavourites';
 import axios from './axios'
-import FavouriteMovie from './FavouriteMovieList';
+import FavouriteMovie from './FavouriteMovie';
 import './Row.css'
 import SingleMovie from './SingleMovie';
 
 function Row({ movie, favorite, title, fetchUrl, props }) {
     const [movies, setMovies] = useState([]);
-    const [favourite, setFavourite] = useState([]);
     const [favourites, setFavourites] = useState([]);
 
     const base_url = "https://image.tmdb.org/t/p/original";
@@ -25,29 +24,31 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
 
 
     useEffect(() => {
-        const favourite = JSON.parse(localStorage.getItem('favourite'));
-        if (favourite) {
-            setFavourite(favourite);
+        const favouriteMovies = JSON.parse(localStorage.getItem('favourite-movies'));
+        if (favouriteMovies) {
+            setFavourites(favouriteMovies);
         }
     }, [])
 
-    useEffect(() => {
-        localStorage.setItem('favourite', JSON.stringify(favourite));
-    }, [favourite]);
 
-    /**const addToFavourite = (movie) => {
-        console.log(favourites);
-        setFavourites(prevFavourite => {
-            return [...prevFavourite, movie]
-        })
-    }**/
+    const saveToLocalStorage = (items) => {
+        localStorage.setItem('favourite-movies', JSON.stringify(items));
+    }
 
     const addToFavourite = (movie) => {
         /*console.log('hey')
         setFavourite([...favourite, movie]);*/
         const newFavouriteMovie = [...favourites, movie];
         setFavourites(newFavouriteMovie);
+        saveToLocalStorage(newFavouriteMovie);
     };
+
+    const removeFromFavourite = (movie) => {
+        const newFavouriteMovie = favourites.filter((favourite) => favourite.id !== movie.id);
+
+        setFavourites(newFavouriteMovie);
+        saveToLocalStorage(newFavouriteMovie);
+    }
 
     console.log(movies);
     console.log(favourites);
@@ -67,8 +68,8 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
                 <h2>Favourites</h2>
                 <div className="row-posters">
                     {favourites && favourites.map(movie => (
-                        <SingleMovie key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
-                            handleClick={addToFavourite}
+                        <FavouriteMovie key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
+                            handleClick={removeFromFavourite}
                         />
                     ))}
                 </div>

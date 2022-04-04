@@ -45,7 +45,12 @@ const Header = ({ movie, fetchUrl }) => {
         fetchSearch();
     }, []);
 
-
+    const addToFavourite = (movie) => {
+        /*console.log('hey')
+        setFavourite([...favourite, movie]);*/
+        const newFavouriteMovie = [...favourites, movie];
+        setFavourites(newFavouriteMovie);
+    };
 
 
 
@@ -66,9 +71,7 @@ const Header = ({ movie, fetchUrl }) => {
                 </div>
                 <div className="favourites">
                     <div className="favourites-dropdown">
-                        <SingleMovie movies={movies}
-                            favoriteComponent={AddFavourites} />
-                        <FavouriteMovieList />
+                        <Row />
                     </div>
                 </div>
             </div>
