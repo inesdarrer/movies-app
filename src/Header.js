@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import SingleMovie from './SingleMovie';
-import FavouriteMovie from './FavouriteMovie';
+import FavouriteMovieList from './FavouriteMovieList';
 import AddFavourites from './AddFavourites';
 import Row from './Row';
 
@@ -15,7 +15,7 @@ import Row from './Row';
 const Header = ({ movie, fetchUrl }) => {
     const [searchText, setSearchText] = useState("");
     const [movies, setMovies] = useState([]);
-    const [favourite, setFavourite] = useState([]);
+    const [favourites, setFavourites] = useState([]);
     const base_url = "https://image.tmdb.org/t/p/original";
 
     const fetchSearch = async () => {
@@ -45,10 +45,9 @@ const Header = ({ movie, fetchUrl }) => {
         fetchSearch();
     }, []);
 
-    const addToFavourite = (movie) => {
-        console.log(favourite);
-        setFavourite([...favourite, movie])
-    }
+
+
+
 
     return (
         <div className='header'>
@@ -68,9 +67,8 @@ const Header = ({ movie, fetchUrl }) => {
                 <div className="favourites">
                     <div className="favourites-dropdown">
                         <SingleMovie movies={movies}
-                            favoriteComponent={AddFavourites}
-                            handleFavouritesClick={addToFavourite} />
-                        <FavouriteMovie />
+                            favoriteComponent={AddFavourites} />
+                        <FavouriteMovieList />
                     </div>
                 </div>
             </div>

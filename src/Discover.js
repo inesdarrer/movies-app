@@ -4,6 +4,8 @@ import requests from './Requests';
 import './Discover.css'
 import axios from './axios';
 import useGenres from './useGenres';
+import { Favorite } from '@material-ui/icons';
+import FavouriteMovieList from './FavouriteMovieList';
 
 const Discover = ({ title, fetchUrl }) => {
 
@@ -11,6 +13,7 @@ const Discover = ({ title, fetchUrl }) => {
     const [selectedGenres, setselectedGenres] = useState([]);
     const [genres, setGenres] = useState([]);
     const genreforURL = useGenres(selectedGenres);
+    const [favourites, setFavourites] = useState([]);
 
     const base_url = "https://image.tmdb.org/t/p/original";
 
@@ -28,7 +31,8 @@ const Discover = ({ title, fetchUrl }) => {
     return (
         <div className='discover-movies'>
             <div className="discover">
-                <Row title="Trending now" fetchUrl={requests.fetchTrending} />
+                <FavouriteMovieList favourites={movies} />
+                <Row title="Trending now" fetchUrl={requests.fetchTrending} movies={movies} />
                 <Row title="Comedies" fetchUrl={requests.fetchComedies} />
                 <Row title="Romance" fetchUrl={requests.fetchRomance} />
                 <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />

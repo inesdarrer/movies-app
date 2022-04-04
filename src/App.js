@@ -8,20 +8,18 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Movies from './Movies';
-import Filter from './Filter';
 import Row from './Row';
-import requests from './Requests';
 import Header from './Header';
-import Hero from './Hero';
-import InfoSection from './InfoSection';
 import Home from './Home';
 import Discover from './Discover';
 import SearchGenres from './SearchGenres';
-import SingleMovie from './SingleMovie';
 import MovieDetails from './MovieDetails';
+import FavouriteMovieList from './FavouriteMovieList';
+import axios from './axios';
 
 
-const App = () => {
+
+const App = (fetchUrl) => {
 
   const url =
     "https://api.themoviedb.org/3/movie/popular?api_key=53ef5f1fc09cf34375c074568d7f94d8&language=en-US&page=1";
@@ -29,7 +27,8 @@ const App = () => {
   const [data, setData] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
-  const [favourite, setFavourite] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     fetchMovies();
@@ -43,17 +42,30 @@ const App = () => {
     setFiltered(movies.results);
   };
 
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(fetchUrl);
+      setMovies(request.data.results);
+      return request;
+    }
+
+    fetchData();
+  }, [fetchUrl]);
+
   const addToFavourite = (movie) => {
-    console.log(favourite);
-    setFavourite([...favourite, movie])
-  }
+    /*console.log('hey')
+    setFavourite([...favourite, movie]);*/
+    const newFavouriteMovie = [...favourites, movie];
+    setFavourites(newFavouriteMovie);
+  };
+
   return (
     <div className='App'>
       <BrowserRouter>
-        <Header favourite={setFavourite} />
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/discover' element={<Discover />} />
+          <Route path='/discover' element={<Discover handleClick={addToFavourite} />} />
           <Route path='/search-genres' element={<SearchGenres />} />
           <Route path='/movie-details/:id' element={<MovieDetails />} />
           <Route path='/search-movies' element={<Movies />} />

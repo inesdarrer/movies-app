@@ -1,16 +1,12 @@
-import { SettingsRemoteSharp } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import SingleMovie from './SingleMovie';
 import AddFavourites from './AddFavourites';
 import axios from './axios'
-import FavouriteMovie from './FavouriteMovieList';
-import './Row.css'
-import SingleMovie from './SingleMovie';
 
-function Row({ movie, favorite, title, fetchUrl, props }) {
+function FavouriteMovieList({ fetchUrl }) {
     const [movies, setMovies] = useState([]);
     const [favourite, setFavourite] = useState([]);
     const [favourites, setFavourites] = useState([]);
-
     const base_url = "https://image.tmdb.org/t/p/original";
 
     useEffect(() => {
@@ -52,30 +48,18 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
     console.log(movies);
     console.log(favourites);
 
-
     return (
         <div className='row'>
-            <h2>{title}</h2>
+            <h2>Favourites</h2>
             <div className="row-posters">
-                {movies && movies.map(movie => (
+                {favourites && favourites.map(movie => (
                     <SingleMovie key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
                         handleClick={addToFavourite}
                     />
                 ))}
             </div>
-            <div className='row'>
-                <h2>Favourites</h2>
-                <div className="row-posters">
-                    {favourites && favourites.map(movie => (
-                        <SingleMovie key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
-                            handleClick={addToFavourite}
-                        />
-                    ))}
-                </div>
-            </div>
-
-        </div >
+        </div>
     )
 }
 
-export default Row
+export default FavouriteMovieList
