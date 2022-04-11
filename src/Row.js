@@ -1,8 +1,9 @@
-import { SettingsRemoteSharp } from '@material-ui/icons';
+import { Movie, SettingsRemoteSharp } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import AddFavourites from './AddFavourites';
 import axios from './axios'
 import FavouriteMovie from './FavouriteMovie';
+import MovieDetails from './MovieDetails';
 import './Row.css'
 import SingleMovie from './SingleMovie';
 
@@ -55,13 +56,19 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
 
 
     return (
+        
         <div className='row'>
             <h2>{title}</h2>
             <div className="row-posters">
                 {movies && movies.map(movie => (
-                    <SingleMovie key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
-                        handleClick={addToFavourite}
-                    />
+                    <SingleMovie 
+                    key={movie.id} 
+                    poster={`${base_url}${movie.poster_path}`} 
+                    title={movie.title} 
+                    movie={movie}
+                    handleClick={addToFavourite}
+                    overview={movie.overview}
+                    /> 
                 ))}
             </div>
             <div className='row'>
@@ -70,6 +77,7 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
                     {favourites && favourites.map(movie => (
                         <FavouriteMovie key={movie.id} poster={`${base_url}${movie.poster_path}`} title={movie.title} movie={movie}
                             handleClick={removeFromFavourite}
+                            
                         />
                     ))}
                 </div>

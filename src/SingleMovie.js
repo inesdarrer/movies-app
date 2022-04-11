@@ -1,27 +1,31 @@
 import './SingleMovie.css'
 import { Link } from "react-router-dom";
-import axios from './axios';
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import MovieDetails from './MovieDetails';
+import React from 'react'
 import AddFavourites from './AddFavourites';
+import MovieDetails from './MovieDetails';
 
 
 
-const SingleMovie = (props, movie) => {
+const SingleMovie = (props) => {
     return (
+        <Link to={`/movie-details/${props.title}`}>
         <div className='row-poster'>
+            <p>{props.overview}</p>
             <div
                 onClick={() => props.handleClick(props.movie)}
                 className='fav-container'>
                 <AddFavourites />
+
             </div>
+
             <img
                 src={props.poster}
-                alt={props.title}
+                alt={props.title}   
             />
-
         </div>
+         </Link>
+        
+
     )
 
 }

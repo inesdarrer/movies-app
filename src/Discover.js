@@ -6,6 +6,7 @@ import axios from './axios';
 import useGenres from './useGenres';
 import { Favorite } from '@material-ui/icons';
 import FavouriteMovieList from './FavouriteMovieList';
+import MovieDetails from './MovieDetails';
 
 const Discover = ({ title, fetchUrl }) => {
 
