@@ -10,7 +10,7 @@ const SingleMovie = (props) => {
     return (
         <Link to={`/movie-details/${props.title}`}>
         <div className='row-poster'>
-            <p>{props.overview}</p>
+            
             <div
                 onClick={() => props.handleClick(props.movie)}
                 className='fav-container'>
