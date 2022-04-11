@@ -6,18 +6,15 @@ import MovieDetails from './MovieDetails';
 
 
 
-const SingleMovie = (props) => {
+const SingleMovie =  (props) => {
     return (
         <Link to={`/movie-details/${props.title}`}>
         <div className='row-poster'>
-            
             <div
                 onClick={() => props.handleClick(props.movie)}
                 className='fav-container'>
                 <AddFavourites />
-
             </div>
-
             <img
                 src={props.poster}
                 alt={props.title}   

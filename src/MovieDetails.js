@@ -5,15 +5,17 @@ import './MovieDetails.css'
 
 const MovieDetails = ({movies}) => {
   let {title } = useParams();
-  const detail = movies;
+  
   console.log(title);
-
-  const {overview} = detail;
-
   return (
     <div className="details">
      <h1>Movie Details</h1>
-     <h2>{title}</h2>
+     {movies.filter((movie) => movie.title === title)
+     .map((movie)=>(
+       <div className='details-container' key={movie.id}>
+         <h2>{title}</h2>
+       </div>
+     ))}
         </div>
     
   );

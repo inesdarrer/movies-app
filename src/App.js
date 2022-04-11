@@ -67,8 +67,7 @@ const App = (fetchUrl) => {
           <Route path='/' element={<Home />} />
           <Route path='/discover' element={<Discover handleClick={addToFavourite} />} />
           <Route path='/search-genres' element={<SearchGenres />} />
-          <Route path='/movie-details/:title' element={<MovieDetails
-          movies={movies}
+          <Route path='/movie-details/:title' element={<MovieDetails movies={movies}
           />} />
           <Route path='/search-movies' element={<Movies />} />
         </Routes>
