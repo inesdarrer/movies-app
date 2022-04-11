@@ -71,6 +71,7 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
                     handleClick={addToFavourite}
                     overview={movie.overview}
                     /> 
+                    
                     </Link>
                   
                 ))}

@@ -7,7 +7,6 @@ import MovieDetails from './MovieDetails';
 const SingleMovie = (props) => {
     return (
         <>
-        <Link to={`/movie-details/${props.title}`}>
         <div className='row-poster'>
             <div
                 onClick={() => props.handleClick(props.movie)}
@@ -19,8 +18,6 @@ const SingleMovie = (props) => {
                 alt={props.title}   
             />
         </div>
-         </Link>
-        
         </>
         
         
