@@ -10,6 +10,7 @@ const MovieDetails = ({movies}) => {
   return (
     <div className="details">
      <h1>Movie Details</h1>
+     <h2>{title}</h2>
      {movies.filter((movie) => movie.title === title)
      .map((movie)=>(
        <div className='details-container' key={movie.id}>

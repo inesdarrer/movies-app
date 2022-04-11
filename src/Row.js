@@ -6,6 +6,7 @@ import FavouriteMovie from './FavouriteMovie';
 import MovieDetails from './MovieDetails';
 import './Row.css'
 import SingleMovie from './SingleMovie';
+import {Link} from 'react-router-dom'
 
 function Row({ movie, favorite, title, fetchUrl, props }) {
     const [movies, setMovies] = useState([]);
@@ -61,6 +62,7 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
             <h2>{title}</h2>
             <div className="row-posters">
                 {movies && movies.map(movie => (
+                    <Link to={`/movie-details/${movie.title}`}>
                     <SingleMovie 
                     key={movie.id} 
                     poster={`${base_url}${movie.poster_path}`} 
@@ -69,6 +71,8 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
                     handleClick={addToFavourite}
                     overview={movie.overview}
                     /> 
+                    </Link>
+                  
                 ))}
             </div>
             <div className='row'>

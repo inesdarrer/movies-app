@@ -4,10 +4,9 @@ import React from 'react'
 import AddFavourites from './AddFavourites';
 import MovieDetails from './MovieDetails';
 
-
-
-const SingleMovie =  (props) => {
+const SingleMovie = (props) => {
     return (
+        <>
         <Link to={`/movie-details/${props.title}`}>
         <div className='row-poster'>
             <div
@@ -21,6 +20,9 @@ const SingleMovie =  (props) => {
             />
         </div>
          </Link>
+        
+        </>
+        
         
 
     )
