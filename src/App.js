@@ -13,7 +13,7 @@ import Header from './Header';
 import Home from './Home';
 import Discover from './Discover';
 import SearchGenres from './SearchGenres';
-import MovieDetails from './MovieDetails';
+import MovieDetail from './MovieDetail';
 import FavouriteMovieList from './FavouriteMovieList';
 import axios from './axios';
 
@@ -67,8 +67,7 @@ const App = (fetchUrl) => {
           <Route path='/' element={<Home />} />
           <Route path='/discover' element={<Discover handleClick={addToFavourite} />} />
           <Route path='/search-genres' element={<SearchGenres />} />
-          <Route path='/movie-details/:title' element={<MovieDetails movies={movies}
-          />} />
+          <Route path='/movie-detail/:id' element={<MovieDetail/>} />
           <Route path='/search-movies' element={<Movies />} />
         </Routes>
       </BrowserRouter>
