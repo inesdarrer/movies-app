@@ -1,6 +1,15 @@
 .details{
+margin-top:200px;
 color: wheat;
-z-index: 99999;
-margin-top: 600px;
+width:100%;
+}
+
+.details-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.details-img img{
+    max-width: 250px;
 }
 
