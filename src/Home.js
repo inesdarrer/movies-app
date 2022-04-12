@@ -3,6 +3,7 @@ import Hero from './Hero'
 import InfoSection from './InfoSection'
 import FavouriteMovieList from './FavouriteMovieList'
 import Row from './Row'
+import MovieDetails from './MovieDetails'
 
 const Home = () => {
     const [favourites, setFavourites] = useState([]);
@@ -19,6 +20,7 @@ const Home = () => {
             <Hero />
             <InfoSection />
             <Row />
+            <MovieDetails/>
         </div>
 
     )
