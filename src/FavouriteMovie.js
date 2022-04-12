@@ -7,7 +7,7 @@ import MovieDetails from './MovieDetails';
 import { RemoveFavourites } from './RemoveFavourites';
 
 
-const FavouriteMovie = (props, movie) => {
+const FavouriteMovie = (props) => {
     return (
         <div className='row-poster'>
             <div
