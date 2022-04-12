@@ -1,16 +1,18 @@
-import { Movie, SettingsRemoteSharp } from '@material-ui/icons';
+import { Details, Movie, SettingsRemoteSharp } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import AddFavourites from './AddFavourites';
 import axios from './axios'
 import FavouriteMovie from './FavouriteMovie';
-import MovieDetails from './MovieDetails';
+import MovieDetail from './MovieDetail';
 import './Row.css'
 import SingleMovie from './SingleMovie';
 import {Link} from 'react-router-dom'
+import MovieDetails from './MovieDetails';
 
-function Row({ movie, favorite, title, fetchUrl, props }) {
+function Row({ title, fetchUrl }) {
     const [movies, setMovies] = useState([]);
     const [favourites, setFavourites] = useState([]);
+    const [details, setDetails] = useState([]);
 
     const base_url = "https://image.tmdb.org/t/p/original";
 
@@ -52,27 +54,30 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
         saveToLocalStorage(newFavouriteMovie);
     }
 
+    const showDetails = (movie) =>{
+        const movieDetails = [...details, movie];
+        setMovies(details);
+    }
+
     console.log(movies);
     console.log(favourites);
 
 
     return (
-        
         <div className='row'>
             <h2>{title}</h2>
             <div className="row-posters">
                 {movies && movies.map(movie => (
-                    <Link to={`/movie-details/${movie.title}`}>
                     <SingleMovie 
                     key={movie.id} 
+                    id={movie.id}
                     poster={`${base_url}${movie.poster_path}`} 
                     title={movie.title} 
                     movie={movie}
                     handleClick={addToFavourite}
+                    handleDetails={showDetails}
                     overview={movie.overview}
                     /> 
-                    
-                    </Link>
                   
                 ))}
             </div>
@@ -87,7 +92,24 @@ function Row({ movie, favorite, title, fetchUrl, props }) {
                     ))}
                 </div>
             </div>
-
+            <div className='details'>
+      <h2>Details</h2>
+  <div className='details-container'>
+    {movies && movies.map((movie) => (
+      <MovieDetail 
+      key={movie.id} 
+      id = {movie.id} 
+      poster={`${base_url}${movie.poster_path}`} 
+      title={movie.title} 
+      movie={movie}
+      handleDetails={showDetails}  
+      overview={movie.overview} 
+      release_date={movie.release_date}
+      vote={movie.vote_average}             
+        />
+    ))}
+  </div>
+</div>
         </div >
     )
 }
